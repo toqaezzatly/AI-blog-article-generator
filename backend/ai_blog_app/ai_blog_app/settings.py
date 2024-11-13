@@ -83,16 +83,19 @@ WSGI_APPLICATION = 'ai_blog_app.wsgi.application'
 # }
 
 
+import os
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'postgress',
-        'USER' : 'postgres',
-        'PASSWORD': 'HKRyhSzygdFmohKfjMXzPmcBidgrVIxH',
-        'HOST': 'postgres.railway.internal',
-        'PORT': '5432'
+        'NAME': os.getenv('DB_NAME', 'postgres'),
+        'USER': os.getenv('DB_USER', 'postgres'),
+        'PASSWORD': os.getenv('DB_PASSWORD', 'HKRyhSzygdFmohKfjMXzPmcBidgrVIxH'),
+        'HOST': os.getenv('DB_HOST', 'postgres.railway.internal'),
+        'PORT': os.getenv('DB_PORT', '5432'),
     }
 }
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
